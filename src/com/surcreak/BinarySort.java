@@ -26,9 +26,20 @@ public class BinarySort implements IPlay{
 
     private void binarySort2(int[] a) {
         int lenth = a.length;
+        int[] result = new int[a.length];
         for (int block=1; block<=lenth; block*=2) {
             for (int start=0; start<lenth; start += 2*block) {
+                int low = start;
+                int mid = (start + block) > lenth ? lenth : start + block;
+                int hight = (start + 2*block) > lenth ? lenth : start + 2*block;
 
+                int start1 = start, end1 = mid;
+                int start2 = mid + 1, end2 = hight;
+
+                int k = low;
+                while (start1<=end1 && start2<=end2) {
+                    result[k++] = a[start1] < a[start2] ? a[start1++] : a[start2++];
+                }
             }
         }
     }
